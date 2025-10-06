@@ -1,17 +1,14 @@
-
-
-import { createClient } from "../utils/supabase/browser-client";
+import HomePosts from "@/components/Home/HomePosts";
+import { getHomePosts } from "@/utils/supabase/quries";
 
 export default async function Home() {
-  const supabase = createClient();
-  const {data, error} = await supabase.from('posts').select('id, title, users("username")')
-                                                    .order("created_at", {ascending: false}) 
-                                                    
-  console.log('data:'  + data, 'error' + error?.message) 
+    const {data, error} = await getHomePosts();
+                                              
+  // console.log('data:'  + data, 'error' + error?.message) 
     return (
     <div className="w-[80%] mx-auto">
-      Hi World!
-      {data && data.map(item => (<div key={item.id}>{item.id}  {item.title}  {item.users.username}</div>))}
+      {/* {data && data.map(({id, title, slug, users}) => <div key= {id}>{title}{users.username})} */}
+        <HomePosts posts={data!}/>
     </div>
   )
 }
