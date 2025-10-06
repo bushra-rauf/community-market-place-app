@@ -20,7 +20,7 @@ const SinglePost = async({params}: {params:{slug: string}}) => {
            
             <div className='flex flex-col border-1 p-4 rounded mt-8 max-w-2xl m-auto'>
                 <h3 className="text left">{data.id}</h3>
-                <h2 className="text-center Font-bold text-xl">{data.title}</h2>
+                <h2 className="text-center font-extrabold text-2xl">{data.title}</h2>
                 <p className="text-xl">{data.content}</p>
                 <div className="text-right">by {data.users.username}</div>
             </div>
