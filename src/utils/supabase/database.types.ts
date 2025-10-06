@@ -51,8 +51,8 @@ export type Database = {
       }
       posts: {
         Row: {
+          content: string | null
           created_at: string
-          description: string | null
           id: number
           image_url: string | null
           slug: string
@@ -60,8 +60,8 @@ export type Database = {
           user_id: string
         }
         Insert: {
+          content?: string | null
           created_at?: string
-          description?: string | null
           id?: number
           image_url?: string | null
           slug: string
@@ -69,8 +69,8 @@ export type Database = {
           user_id?: string
         }
         Update: {
+          content?: string | null
           created_at?: string
-          description?: string | null
           id?: number
           image_url?: string | null
           slug?: string
