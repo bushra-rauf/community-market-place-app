@@ -13,4 +13,11 @@ export const getSinglePosts = async (slug: string) => {
                            .eq('slug', slug)
                            .single()
 }
+
+export const getSearchPosts = async (search: string) => {
+    const supabase =  createClient();
+      return await supabase.from('posts')
+                           .select('id, title, slug')
+                           .ilike('title',`%${search}%`)
+}
 export type HomePostType = QueryData<ReturnType<typeof getHomePosts>>

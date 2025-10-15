@@ -1,11 +1,12 @@
 import Logo from "../Logo"
+import SearchInput from "../Search"
 
 const Header = () => {
     return(
         <>
-        <header>
+        <header className="flex items-center justify-between">
         <Logo/>
-        {/* <SearchInput/> */}
+         <SearchInput/> 
         {/* <AccountLinks/> */}
         </header>
         <div className='border-b '></div>

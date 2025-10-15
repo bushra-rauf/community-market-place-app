@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query"
 import Link from "next/link"
 
 const HomePosts = ({posts}: {posts:HomePostType}) => {
-    const {data} = useQuery({
+    const {data, refetch} = useQuery({
         queryKey: ['home-posts'],
         queryFn:  async() => {
             const {data,error} = await getHomePosts()
@@ -13,7 +13,7 @@ const HomePosts = ({posts}: {posts:HomePostType}) => {
          },
          initialData: posts,
          refetchOnMount: false,
-         staleTime: 10000 * 10
+         refetchInterval: 30000 
     })
     return(
         <div >
