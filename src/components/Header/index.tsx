@@ -1,3 +1,4 @@
+import AccountLinks from "../Accountslinks"
 import Logo from "../Logo"
 import SearchInput from "../Search"
 
@@ -7,7 +8,7 @@ const Header = () => {
         <header className="flex items-center justify-between">
         <Logo/>
          <SearchInput/> 
-        {/* <AccountLinks/> */}
+         <AccountLinks/> 
         </header>
         <div className='border-b '></div>
        </>
