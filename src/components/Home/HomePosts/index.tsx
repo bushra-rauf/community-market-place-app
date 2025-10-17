@@ -1,13 +1,16 @@
 'use client'
+import { createClient } from "@/utils/supabase/browser-client"
 import { getHomePosts, HomePostType } from "@/utils/supabase/quries"
+
 import { useQuery } from "@tanstack/react-query"
 import Link from "next/link"
 
 const HomePosts = ({posts}: {posts:HomePostType}) => {
-    const {data, refetch} = useQuery({
+    const {data} = useQuery({
         queryKey: ['home-posts'],
         queryFn:  async() => {
-            const {data,error} = await getHomePosts()
+            const supabase = createClient()
+            const {data,error} = await getHomePosts(supabase)
             if(error) throw error
             return data
          },
