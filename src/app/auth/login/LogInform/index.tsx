@@ -1,7 +1,9 @@
+import { LogIn } from "@/actions/sign-in"
+
 const LogInForm = () => {
     return (
         <>
-        <form className="flex flex-col mb-4">
+        <form action={LogIn}className="flex flex-col mb-4">
            <h2 className="mb-6">Log in!</h2>
            <fieldset>
                <label className="font-bold text-2xl p-2" htmlFor="email">Enter your email</label>

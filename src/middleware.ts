@@ -21,7 +21,6 @@ export const middleware = async (request: NextResponse) => {
 )
 
 const {data: {user}, error} = await supabase.auth.getUser()
-console.log("hello from middleware")
-console.log('user', user)
+
     
 }
