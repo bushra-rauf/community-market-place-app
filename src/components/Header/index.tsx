@@ -5,7 +5,7 @@ import SearchInput from "../Search"
 const Header = () => {
     return(
         <>
-        <header className="flex items-center justify-between">
+        <header className="flex items-center justify-between flex-wrap">
         <Logo/>
          <SearchInput/> 
          <AccountLinks/> 
