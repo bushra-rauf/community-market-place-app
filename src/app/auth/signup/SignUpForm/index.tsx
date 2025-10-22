@@ -1,7 +1,10 @@
+import { SignUp } from "@/actions/sign-up"
+
+
 const SignUpForm = () => {
     return (
         <>
-        <form className="flex flex-col mb-4">
+        <form action={SignUp} className="flex flex-col mb-4">
            <h2 className="mb-6">Sign Up!</h2>
            <fieldset>
                <label className="font-bold text-2xl p-2" htmlFor="email">Enter your email</label>
