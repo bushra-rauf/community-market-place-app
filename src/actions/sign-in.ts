@@ -11,9 +11,7 @@ export const LogIn = async(formdata: FormData) => {
     const supabase = await createClient()
 
     const {data: {user}, error} = await supabase.auth.signInWithPassword(userdata)
-    //   if (user && user.email) {
-    //         const {data, error} = await supabase.from ("users").insert([{id:user.id, email: user.email, username: userdata.username}])
-    //     }
+   
       if(error) throw error
     
     redirect("/")
