@@ -18,7 +18,7 @@ const SignUpForm = () => {
                <label className="font-bold text-2xl p-2" htmlFor="password">Enter your password</label>
                <input className='ml-6 mb-5 px-2'id="password" name="password" placeholder="Enter your password"/>
            </fieldset>
-           <button className=" bg-blue-400 hover:bg-blue-500 text-white p-4 font-bold text-2xl rounded-2xl">Sign Up</button>
+           <button className=" bg-blue-400 hover:bg-blue-500 text-white p-2 font-bold text-2xl rounded-xl">Sign Up</button>
         </form>
         </>
     )

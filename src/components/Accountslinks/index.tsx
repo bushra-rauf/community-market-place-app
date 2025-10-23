@@ -6,7 +6,12 @@ const AccountLinks = async () => {
     const {data: {user}, error} = await supabase.auth.getUser()
     return (
        <div> 
-        {user ? <LogOutButton/>
+        {user ? 
+        <>   
+            <Link href= '/create' className='bg-black hover:bg-gray-700 p-2.5 rounded-xl font-bold text-white mr-4'>Create Post</Link>    
+            <LogOutButton/> 
+        </>
+
             :  <Link href= '/auth/login' className='bg-rose-400 p-2 rounded-xl font-bold text-white'>LogIn</Link>
         }
        </div>
