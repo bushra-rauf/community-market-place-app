@@ -1,4 +1,4 @@
-import { LogIn } from "@/actions/sign-in"
+import { LogIn } from "@/actions/log-in"
 
 const LogInForm = () => {
     return (
