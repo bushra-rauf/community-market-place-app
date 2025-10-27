@@ -1,13 +1,11 @@
 'use server'
 import { createClient } from "@/utils/supabase/server-client"
 import { redirect } from "next/navigation"
+import { signUpSchema } from "./schemas"
+import z from "zod"
 
-export const SignUp = async (formdata: FormData) => {
-    const userdata = {
-        email: formdata.get('email') as string,
-        username: formdata.get('username') as string,
-        password: formdata.get('password') as string
-    }
+export const SignUp = async (userdata: z.infer <typeof signUpSchema>) => {
+   
     const supabase = await createClient()
     
     const {data: {user}, error} = await supabase.auth.signUp(userdata) 
