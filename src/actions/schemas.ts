@@ -10,3 +10,8 @@ export const signUpSchema = z.object({
     username: z.string().min(5, "username must be at least 5 characters long"),
     password: z.string().min(6, "Your password must be minimum of 6 characters")
 })
+
+export const postSchema = z.object({
+    title: z.string().min(3, "Titles must have at least 3 characters"),
+    content: z.string().optional(),
+})

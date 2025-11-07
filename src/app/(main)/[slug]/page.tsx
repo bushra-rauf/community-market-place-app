@@ -27,8 +27,6 @@ const SinglePost = async({params}: {params:{slug: string}}) => {
                 <h2 className="text-center font-extrabold text-2xl">{data.title}</h2>
                 <p className="text-xl">{data.content}</p>
                 <div className="text-right">by {data.users.username}</div>
-                <p>Auther: {data.user_id}</p>
-                <p>Logged in: {user?.id}</p>
             </div>
             { isAuthor &&
             <div className="w-2xl p-4 m-auto border-gray-700 border-1 mt-4">
