@@ -27,6 +27,7 @@ const SinglePost = async({params}: {params:{slug: string}}) => {
                 <h2 className="text-center font-extrabold text-2xl">{data.title}</h2>
                 <p className="text-xl">{data.content}</p>
                 <div className="text-right">by {data.users.username}</div>
+                 {data.image && <div className="border mt-5 p-4"><img src={data.image}/></div> }
             </div>
             { isAuthor &&
             <div className="w-2xl p-4 m-auto border-gray-700 border-1 mt-4">

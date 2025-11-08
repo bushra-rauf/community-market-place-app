@@ -14,4 +14,5 @@ export const signUpSchema = z.object({
 export const postSchema = z.object({
     title: z.string().min(3, "Titles must have at least 3 characters"),
     content: z.string().optional(),
+    image: z.instanceof(FormData).optional()
 })
