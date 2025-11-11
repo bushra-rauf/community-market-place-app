@@ -20,7 +20,7 @@ export const CreatePost = async (userdata: z.infer<typeof postSchema>) =>{
     
     const imageFile =  userdata.image?.get("image")
 
-    if(!(imageFile instanceof File) && imageFile !== null ) {
+    if(!(imageFile instanceof File) && imageFile !== null) {
         throw new Error("Malformed Image file")
     }
 

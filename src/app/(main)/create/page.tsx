@@ -11,6 +11,7 @@ const CreatePage = () => {
 
     const schemaWithImage = postSchema.omit({image: true})
     .extend({image: z.unknown().transform(value => {return value as (FileList)}).optional()})
+
     const {register, handleSubmit, formState: {errors}} = useForm({
          resolver: zodResolver (schemaWithImage)
     })
@@ -26,9 +27,9 @@ const {mutate, error} = useMutation({
                Get something to say?
             </h2>
             <form onSubmit={handleSubmit(values => {
-              const imageForm = new FormData();
+              let imageForm = new FormData();
 
-              if(values.image) imageForm.append('image', values.image[0])
+              if(values.image?.length) { imageForm.append('image', values.image[0]) }
 
               mutate({title: values.title, content: values.content, image: imageForm })
             } 

@@ -1,6 +1,7 @@
 import { createClient } from "@/utils/supabase/server-client"
 import { getSinglePosts } from "@/utils/supabase/quries"
 import DeleteButton from "./DeleteButton"
+import EditButton from "./EditButton"
 
 const SinglePost = async({params}: {params:{slug: string}}) => {
     const {slug} = await params
@@ -32,6 +33,7 @@ const SinglePost = async({params}: {params:{slug: string}}) => {
             { isAuthor &&
             <div className="w-2xl p-4 m-auto border-gray-700 border-1 mt-4">
                 <DeleteButton postId={data.id}/>
+                <EditButton slug={slug}/>
     
             </div>
             }
