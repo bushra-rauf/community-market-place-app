@@ -20,15 +20,30 @@ export const middleware = async (request: NextRequest) => {
         }
 )
 
-const {data: {user}, error} = await supabase.auth.getUser()
+const {data: {user}} = await supabase.auth.getUser()
 
 const protectedRoutes = [
+    /^\/$/,  // protect homepage
     /^\/create$/,
-    /^\/[^\/]+\/edit$/ // protect from non logged in user. 
+    /^\/[^\/]+\/edit$/ // protect from non logged in user.
 ]
-   if (!user && protectedRoutes.some(route => route.test(request.nextUrl.pathname))) {
-      const newUrl = request.nextUrl.clone()
-      newUrl.pathname = "/auth/login"
-      return NextResponse.redirect(newUrl)
-    }
+
+const publicRoutes = [
+    /^\/auth\/login$/,
+    /^\/auth\/signup$/
+]
+
+// Allow access to public routes
+if (publicRoutes.some(route => route.test(request.nextUrl.pathname))) {
+    return supabaseResponse
+}
+
+// Redirect to login if user is not authenticated and trying to access protected routes
+if (!user && protectedRoutes.some(route => route.test(request.nextUrl.pathname))) {
+    const newUrl = request.nextUrl.clone()
+    newUrl.pathname = "/auth/login"
+    return NextResponse.redirect(newUrl)
+}
+
+return supabaseResponse
 }

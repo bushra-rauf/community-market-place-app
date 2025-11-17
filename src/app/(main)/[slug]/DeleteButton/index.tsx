@@ -11,7 +11,7 @@ const DeteleButton = ({postId}: {postId: number}) => {
     })
     
     return(
-            <button onClick={()=> mutate(postId)} className="bg-black border p-2 text-white font-bold rounded-2xl">Delete</button>
+            <button onClick={()=> mutate(postId)} className="bg-black w-25 text-center border p-2 text-white font-bold rounded-2xl">Delete</button>
     )
 }
 

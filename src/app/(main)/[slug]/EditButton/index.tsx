@@ -6,7 +6,7 @@ const EditButton = ({slug}: {slug: string}) => {
 
     
     return(
-            <Link className="bg-black border p-2 text-white font-bold rounded-2xl" href={`/${slug}/edit`}>Edit post</Link>
+            <Link className="bg-black border text-center w-25 p-2 text-white font-bold rounded-2xl" href={`/${slug}/edit`}>Edit post</Link>
     )
 }
 
