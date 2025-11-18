@@ -16,35 +16,52 @@ export type Database = {
     Tables: {
       comments: {
         Row: {
-          context: string | null
+          content: string
           created_at: string
+          updated_at: string
           id: string
-          parent_id: string | null
-          post_id: string | null
-          user_id: string | null
+          parent_comment_id: string | null
+          post_id: number
+          user_id: string
         }
         Insert: {
-          context?: string | null
+          content: string
           created_at?: string
+          updated_at?: string
           id?: string
-          parent_id?: string | null
-          post_id?: string | null
-          user_id?: string | null
+          parent_comment_id?: string | null
+          post_id: number
+          user_id: string
         }
         Update: {
-          context?: string | null
+          content?: string
           created_at?: string
+          updated_at?: string
           id?: string
-          parent_id?: string | null
-          post_id?: string | null
-          user_id?: string | null
+          parent_comment_id?: string | null
+          post_id?: number
+          user_id?: string
         }
         Relationships: [
           {
             foreignKeyName: "comments_user_id_fkey"
             columns: ["user_id"]
-            isOneToOne: true
+            isOneToOne: false
             referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "comments_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "posts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "comments_parent_comment_id_fkey"
+            columns: ["parent_comment_id"]
+            isOneToOne: false
+            referencedRelation: "comments"
             referencedColumns: ["id"]
           },
         ]

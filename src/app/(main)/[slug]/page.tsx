@@ -2,6 +2,7 @@ import { createClient } from "@/utils/supabase/server-client"
 import { getSinglePosts } from "@/utils/supabase/quries"
 import DeleteButton from "./DeleteButton"
 import EditButton from "./EditButton"
+import CommentsSection from "@/components/CommentsSection"
 
 const SinglePost = async({params}: {params:{slug: string}}) => {
     const {slug} = await params
@@ -37,6 +38,15 @@ const SinglePost = async({params}: {params:{slug: string}}) => {
 
             </div>
             }
+
+            {/* Comments Section */}
+            <div className="max-w-2xl mx-auto mt-8">
+                <CommentsSection
+                    postId={data.id}
+                    postAuthorId={data.user_id}
+                    currentUserId={user?.id}
+                />
+            </div>
           </>
         }
     </div>
