@@ -1,0 +1,15 @@
+create a project on supabase name it and create tables for user, posts and commends make colums and set foreign key. 
+npm install @supabase/supabase-js
+make file .env.local 
+NEXT_PUBLIC_SUBEBASE_URL= (to get this from project settings data api and copy paste link)
+NEXT_PUBLIC_SUPEBASE_PUBLISHABLE_KEY=(api key publishable key)
+npm run dev
+for connecting to a supabase : (npm i @supabase/ssr (for client authorization))
+create utils/supabse/browserClient.ts 
+import { createBrowserClient } from "@supabase/ssr";
+export const createClient = () => {
+    return createBrowserClient(
+        process.env.NEXT_PUBLIC_SUBEBASE_URL!,
+        process.env.NEXT_PUBLIC_SUPEBASE_PUBLISHABLE_KEY!
+    )
+}
