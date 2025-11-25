@@ -27,9 +27,9 @@ const CommentsSection = ({
         queryKey: ['comments', postId],
         queryFn: () => getComments(postId),
         initialData: initialComments,
-        refetchOnMount: false,
+        refetchOnMount: true,
         refetchOnWindowFocus: false,
-        staleTime: 30000 // Consider data fresh for 30 seconds
+        staleTime: 0 // Consider data fresh for 30 seconds
     })
 
     const totalComments = comments?.reduce((count, comment) => {
