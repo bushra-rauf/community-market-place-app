@@ -1,5 +1,6 @@
 import { createClient } from "@/utils/supabase/server-client"
 import { getSinglePosts } from "@/utils/supabase/quries"
+import { CommentWithUser, getComments } from "@/actions/get-comments"
 import DeleteButton from "./DeleteButton"
 import EditButton from "./EditButton"
 import CommentsSection from "@/components/CommentsSection"
@@ -18,6 +19,14 @@ const SinglePost = async({params}: {params:{slug: string}}) => {
             <p className="text-red-400">Error: {error.message}</p>)
             : <p>No post found</p>
         }
+
+      // Fetch comments on the server
+    let initialComments: CommentWithUser[] | undefined = []
+    try {
+        initialComments = await getComments(data.id)
+    } catch (err) {
+        console.error("Failed to fetch comments:", err)
+    }    
         console.log(data)
 
     return(
@@ -45,6 +54,7 @@ const SinglePost = async({params}: {params:{slug: string}}) => {
                     postId={data.id}
                     postAuthorId={data.user_id}
                     currentUserId={user?.id}
+                    initialComments={initialComments}
                 />
             </div>
           </>
