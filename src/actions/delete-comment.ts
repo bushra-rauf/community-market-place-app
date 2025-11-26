@@ -21,7 +21,8 @@ export const deleteComment = async (commentId: string) => {
             user_id,
             post_id,
             posts!inner (
-                user_id
+                user_id,
+                slug
             )
         `)
         .eq('id', commentId)
@@ -50,7 +51,7 @@ export const deleteComment = async (commentId: string) => {
     }
 
     // Revalidate to show updated comments
-    revalidatePath('/')
+    revalidatePath(`/${(comment.posts).slug}`)
 
     return { success: true }
 }

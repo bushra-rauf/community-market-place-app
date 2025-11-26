@@ -4,6 +4,7 @@ import z from "zod"
 import { commentSchema } from "./schemas"
 import { createClient } from "@/utils/supabase/server-client"
 import { revalidatePath } from "next/cache"
+import { redirect } from "next/navigation"
 
 export const createComment = async (commentData: z.infer<typeof commentSchema>) => {
     // Validate input
@@ -21,7 +22,7 @@ export const createComment = async (commentData: z.infer<typeof commentSchema>) 
     // Verify post exists
     const { data: post, error: postError } = await supabase
         .from('posts')
-        .select('id')
+        .select('id, slug')
         .eq('id', parsedData.postId)
         .single()
 
@@ -64,7 +65,7 @@ export const createComment = async (commentData: z.infer<typeof commentSchema>) 
     }
 
     // Revalidate the post page to show new comment
-    revalidatePath('/')
+    revalidatePath(`/${post.slug}`)
 
     return newComment
 }

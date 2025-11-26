@@ -45,10 +45,10 @@ const CommentForm = ({
 
     const mutation = useMutation({
         mutationFn: createComment,
-        onSuccess: () => {
+        onSuccess:async () => {
             // Invalidate comments query to refetch
-            queryClient.invalidateQueries({ queryKey: ['comments', postId] })
-            queryClient.invalidateQueries({ queryKey: ['comment-count', postId] })
+          await queryClient.refetchQueries({ queryKey: ['comments', postId] })
+          await queryClient.refetchQueries({ queryKey: ['comment-count', postId] })
 
             toast.success(parentCommentId ? "Reply posted successfully!" : "Comment posted successfully!")
             reset()
