@@ -23,20 +23,20 @@ export const middleware = async (request: NextRequest) => {
 const {data: {user}} = await supabase.auth.getUser()
 
 const protectedRoutes = [
-    /^\/$/,  // protect homepage
+    // /^\/$/,  // protect homepage
     /^\/create$/,
     /^\/[^\/]+\/edit$/ // protect from non logged in user.
 ]
 
-const publicRoutes = [
-    /^\/auth\/login$/,
-    /^\/auth\/signup$/
-]
+// const publicRoutes = [
+//     /^\/auth\/login$/,
+//     /^\/auth\/signup$/
+// ]
 
 // Allow access to public routes
-if (publicRoutes.some(route => route.test(request.nextUrl.pathname))) {
-    return supabaseResponse
-}
+// if (publicRoutes.some(route => route.test(request.nextUrl.pathname))) {
+//     return supabaseResponse
+// }
 
 // Redirect to login if user is not authenticated and trying to access protected routes
 if (!user && protectedRoutes.some(route => route.test(request.nextUrl.pathname))) {
@@ -45,5 +45,5 @@ if (!user && protectedRoutes.some(route => route.test(request.nextUrl.pathname))
     return NextResponse.redirect(newUrl)
 }
 
-return supabaseResponse
+// return supabaseResponse
 }
