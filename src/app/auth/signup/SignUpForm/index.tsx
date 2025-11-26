@@ -3,6 +3,7 @@ import { signUpSchema } from "@/actions/schemas"
 import { SignUp } from "@/actions/sign-up"
 import ErrorMessage from "@/components/ErrorMessage"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useMutation } from "@tanstack/react-query"
 import { useForm } from "react-hook-form"
 
 
@@ -10,9 +11,12 @@ const SignUpForm = () => {
     const {register, handleSubmit, formState:{errors}} = useForm({
         resolver: zodResolver(signUpSchema)
     })
+const {mutate , error} = useMutation({
+    mutationFn: SignUp,
+})
     return (
         <>
-        <form onSubmit={handleSubmit(values => SignUp(values))} className="flex flex-col mb-4">
+        <form onSubmit={handleSubmit(values => mutate(values))} className="flex flex-col mb-4">
            <h2 className="mb-6 text-xl sm:text-2xl font-semibold text-gray-800">Create your account!</h2>
            <fieldset>
                <label className="font-bold text-2xl p-2" htmlFor="email">Enter your email</label>
@@ -31,6 +35,7 @@ const SignUpForm = () => {
            </fieldset>
            <button className=" bg-blue-400 hover:bg-blue-500 text-white p-2 font-bold text-2xl rounded-xl">Sign Up</button>
         </form>
+         {error && <ErrorMessage message={error.message}/>}
         </>
     )
 }
