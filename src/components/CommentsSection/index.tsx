@@ -29,7 +29,7 @@ const CommentsSection = ({
         initialData: initialComments,
         refetchOnMount: true,
         refetchOnWindowFocus: false,
-        staleTime: 0 // Consider data fresh for 30 seconds
+        staleTime: 0 // Consider data fresh 
     })
 
     const totalComments = comments?.reduce((count, comment) => {

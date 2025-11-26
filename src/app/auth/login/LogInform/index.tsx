@@ -13,15 +13,12 @@ const LogInForm = () => {
         resolver: zodResolver(logInSchema)
     })
 
-    const {mutate,error,isPending} = useMutation({
+    const {mutate, data, error, isPending} = useMutation({
          mutationFn: LogIn,
     })
 
     return (
-
         <>
-      
-
         <form onSubmit={handleSubmit(values => mutate(values))}className="flex flex-col mb-4">
            <h2 className="mb-6 text-xl sm:text-2xl font-semibold text-gray-800">Log in to your account</h2>
            <fieldset>
@@ -35,7 +32,7 @@ const LogInForm = () => {
                {errors.password && <ErrorMessage message= {errors.password.message!}/>}
             </fieldset><button className=" bg-blue-400 hover:bg-blue-500 text-white p-2 font-bold text-2xl rounded-xl">{isPending? "logging you in" : "Log in"}</button>
         </form>
-        {errors && <ErrorMessage message={error?.message!}/>}
+        {data?.error && <ErrorMessage message={data.error}/>}
         </>
     )
 }
